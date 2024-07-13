@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/user/cart'
 
 const formData = [
@@ -26,6 +26,7 @@ const formData = [
   }
 ]
 
+const router = useRouter()
 const cartStore = useCartStore()
 
 const userFormData = reactive({
@@ -36,7 +37,8 @@ const userFormData = reactive({
 })
 
 const payment = () => {
-  console.log(userFormData)
+  cartStore.createOrder(userFormData)
+  router.push({ name: 'success' })
 }
 
 </script>
@@ -52,7 +54,8 @@ const payment = () => {
           </div>
           <input v-if="form.type !== 'textarea'" :type="form.type" v-model="userFormData[form.field]"
             placeholder="Type here" class="input input-bordered w-full" />
-          <textarea v-else class="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
+          <textarea v-else v-model="userFormData[form.field]" class="textarea textarea-bordered h-24"
+            placeholder="Bio"></textarea>
         </label>
         <button @click="payment" class="btn btn-neutral w-full mt-4">ชำระเงิน</button>
       </section>

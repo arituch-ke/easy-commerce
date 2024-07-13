@@ -12,10 +12,16 @@ const search = ref('');
 
 const login = () => {
   isLogged.value = true;
+  localStorage.setItem('isLoggedIn', true);
 }
 
 const logout = () => {
   isLogged.value = false;
+  localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('cart-data');
+  localStorage.removeItem('order-data');
+  localStorage.removeItem('profile-data');
+  window.location.reload();
 }
 
 const handleSearch = (event) => {
