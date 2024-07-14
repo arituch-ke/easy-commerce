@@ -7,9 +7,9 @@ const props = defineProps({
 })
 </script>
 <template>
-  <div class="card bg-base-100 w-full shadow-xl">
+  <div class="card card-compact bg-base-100 w-full shadow-xl">
     <figure>
-      <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
+      <img :src="product.imageUrl" alt="Shoes" class="w-full" />
     </figure>
     <div class="card-body">
       <h2 class="card-title">{{ props.product.name }}</h2>

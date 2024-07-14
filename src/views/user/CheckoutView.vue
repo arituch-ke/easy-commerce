@@ -53,25 +53,26 @@ const payment = () => {
             <span class="label-text">{{ form.name }}</span>
           </div>
           <input v-if="form.type !== 'textarea'" :type="form.type" v-model="userFormData[form.field]"
-            placeholder="Type here" class="input input-bordered w-full" />
-          <textarea v-else v-model="userFormData[form.field]" class="textarea textarea-bordered h-24"
+            placeholder="Type here" class="rounded input input-bordered w-full" />
+          <textarea v-else v-model="userFormData[form.field]" class="rounded textarea textarea-bordered h-24"
             placeholder="Bio"></textarea>
         </label>
-        <button @click="payment" class="btn btn-neutral w-full mt-4">ชำระเงิน</button>
+        <button @click="payment" class="rounded btn btn-neutral w-full mt-4">ชำระเงิน</button>
       </section>
       <section class="flex-auto w-32 bg-slate-200 px-2">
-        <div v-for="item in cartStore.items" :key="item.name" class="flex bg-white m-8 py-4">
-          <div class="flex-1">
-            <img :src="item.imageUrl" alt="product" class="w-full p-8">
+        <div v-for="item in cartStore.items" :key="item.name"
+          class="border border-black bg-white grid grid-cols-4 gap-2 items-center my-4 justify-center">
+          <div>
+            <img :src="item.imageUrl" class="w-full object-cover p-4" />
           </div>
-          <div class="flex-1">
-            <div class="flex flex-col justify-between h-full">
-              <div>
-                <div class="font-bold">{{ item.name }}</div>
-                <div>จำนวน {{ item.quantity }}</div>
-              </div>
-              <RouterLink :to="{ name: 'cart' }">Edit</RouterLink>
-            </div>
+          <div>
+            <div class="font-bold">{{ item.name }}</div>
+          </div>
+          <div>
+            จำนวน: {{ item.quantity }}
+          </div>
+          <div>
+            <RouterLink :to="{ name: 'cart' }">Edit</RouterLink>
           </div>
         </div>
         <div class="divider"></div>

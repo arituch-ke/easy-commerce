@@ -15,14 +15,14 @@ const changeQuantity = (index, quantity) => {
 
     <div class="flex my-4">
       <div class="flex-auto w-64 bg-base-200 p-4">
-        <div v-if="cartStore.items <= 0">
+        <div v-if="cartStore.items.length <= 0">
           Cart is empty
         </div>
         <div v-else v-for="(item, index) in cartStore.items" :key="item" class="flex">
-          <div class="flex-1">
-            <img :src="item.imageUrl" alt="product" class="w-full p-10">
+          <div class="flex-auto py-10">
+            <img :src="item.imageUrl" alt="product" class="w-full">
           </div>
-          <div class="flex-1">
+          <div class="flex-auto p-10">
             <div class="flex flex-col justify-between h-full">
               <div class="relative grid grid-cols-2">
                 <div>
@@ -79,9 +79,12 @@ const changeQuantity = (index, quantity) => {
             <div>ราคารวมทั้งหมด</div>
             <div>฿{{ cartStore.summaryPrice }}</div>
           </div>
-          <RouterLink :to="{ name: 'checkout' }" class="btn btn-neutral btn-square w-full mt-4">
-            ชำระเงิน
-          </RouterLink>
+          <div>
+            <RouterLink :to="{ name: 'checkout' }" class="rounded btn btn-neutral w-full mt-4"
+              v-if="cartStore.items.length > 0">
+              ชำระเงิน
+            </RouterLink>
+          </div>
         </div>
       </div>
     </div>

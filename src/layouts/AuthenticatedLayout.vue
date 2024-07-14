@@ -3,12 +3,8 @@ import FooterComponent from '@/components/FooterComponent.vue'
 import HeaderComponent from '@/components/HeaderComponent.vue'
 </script>
 <template>
-  <div class="container mx-auto">
-    <!-- Navbar content -->
-    <h1>Header Admin</h1>
+  <div class="container mx-auto h-screen p-4 flex items-center">
     <!-- Main content -->
     <slot />
-    <!-- Footer content -->
-    <h1>Footer Admin</h1>
   </div>
 </template>
