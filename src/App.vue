@@ -1,12 +1,13 @@
 <script setup>
-import { onMounted } from 'vue'
-import { RouterView } from 'vue-router'
-
-import UserLayout from '@/layouts/UserLayout.vue'
+import { onMounted, computed } from 'vue'
+import { RouterView, useRoute } from 'vue-router'
 
 import { useCartStore } from '@/stores/user/cart'
 
 const cartStore = useCartStore()
+const route = useRoute();
+
+const layout = computed(() => route.meta.layout);
 
 onMounted(() => {
   cartStore.loadCart()
@@ -14,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <UserLayout>
+  <component :is="layout">
     <RouterView />
-  </UserLayout>
+  </component>
 </template>
